@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 
-function Form( { member, setMember, memberList, setMemberList, memberToEdit, id, setId }) {
-  const [memberPassed, setMemberPassed] = useState({name: undefined, email: undefined, role: undefined});
+function Form( {  memberList, setMemberList, memberToEdit, id, setId }) {
+  const [member, setMember] = useState({name: '', email: '', role: ''});
 
   useEffect(() => {
     if (memberToEdit) {
-      setMemberPassed(memberToEdit);
+      setMember(memberToEdit);
     }
   }, [memberToEdit])
 
   function handleChange(event) {
     if (memberToEdit) {
-      setMemberPassed({...memberPassed, [event.target.name]: event.target.value})
+      setMember({...member, [event.target.name]: event.target.value})
+    } else {
+      setMember({ ...member, [event.target.name]: event.target.value, 'id': id + 1 });
     }
-
-    setMember({ ...member, [event.target.name]: event.target.value, 'id': id + 1 });
   }
   
   function handleSubmit(event) {
     event.preventDefault();
     if (memberToEdit) {
-      memberList.forEach((member, index) => {
-        if (member.id === memberToEdit.id) {
-          memberList[index] = memberPassed;
+      memberList.forEach((item, index) => {
+        if (item.id === memberToEdit.id) {
+          memberList[index] = member;
           setMemberList([...memberList]);
         }
       })
@@ -44,7 +44,7 @@ function Form( { member, setMember, memberList, setMemberList, memberToEdit, id,
               <input
                 type="text"
                 name="name"
-                value={memberPassed.name}
+                value={member.name}
                 placeholder="Enter your name"
                 onChange={handleChange}
               />
@@ -56,7 +56,7 @@ function Form( { member, setMember, memberList, setMemberList, memberToEdit, id,
           <input
             type="email"
             name="email"
-            value={memberPassed.email}
+            value={member.email}
             aria-describedby="emailHelp"
             placeholder="Enter email"
             onChange={handleChange}
@@ -67,7 +67,7 @@ function Form( { member, setMember, memberList, setMemberList, memberToEdit, id,
           <input
             type="role"
             name="role"
-            value={memberPassed.role}
+            value={member.role}
             placeholder="Role"
             onChange={handleChange}
           />

@@ -4,9 +4,8 @@ import MemberList from './components/MemberList';
 import Form from './components/Form';
 
 function App() {
-  const [member, setMember] = useState({ id: 0, name: 'Leana', email: 'Leana@gmail.com', role: 'front-end'});
   const [id, setId] = useState(0);
-  const [memberList, setMemberList] = useState([member]);
+  const [memberList, setMemberList] = useState([{ id: 0, name: 'Leana', email: 'Leana@gmail.com', role: 'front-end'}]);
   const [memberToEdit, setMemberToEdit] = useState();
 
   function editMember(memberId) {
@@ -21,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <MemberList list={memberList} editMember={editMember}/>
-      <Form member={member} setMember={setMember} 
+      <Form 
             memberList={memberList} 
             setMemberList={setMemberList}
             memberToEdit={memberToEdit}

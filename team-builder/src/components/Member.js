@@ -20,6 +20,7 @@ function Member( { member }) {
       <h2>Name: {member.name}</h2>
       <h2>Email: {member.email}</h2>
       <h2>Role: {member.role}</h2>
+      <button>Edit</button>
     </Card>
   );
 }

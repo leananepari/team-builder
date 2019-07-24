@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <MemberList list={memberList}/>
-      <Form setMember={setMember} setMemberList={setMemberList}/>
+      <Form member={member} setMember={setMember} memberList={memberList} setMemberList={setMemberList}/>
     </div>
   );
 }

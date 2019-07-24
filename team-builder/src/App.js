@@ -10,14 +10,12 @@ function App() {
   const [memberToEdit, setMemberToEdit] = useState();
 
   function editMember(memberId) {
-console.log('inside funtion edit member', 'NAME', id)
-  memberList.forEach(member => {
-    if (member.id === memberId) {
-      setMemberToEdit(member);
-    }
-    console.log('member to edit', memberToEdit)
-  })
-  // console.log('member to edit', memberToEdit)
+    memberList.forEach(member => {
+      if (member.id === memberId) {
+        setMemberToEdit(member);
+      }
+
+    })
   }
 
   return (

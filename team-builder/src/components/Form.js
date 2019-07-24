@@ -23,12 +23,14 @@ function Form( { member, setMember, memberList, setMemberList, memberToEdit, id,
     if (memberToEdit) {
       memberList.forEach((member, index) => {
         if (member.id === memberToEdit.id) {
-          setMemberList(memberList[index] = memberPassed);
+          memberList[index] = memberPassed;
+          setMemberList([...memberList]);
         }
       })
-    } 
+    } else {
       setMemberList([...memberList, member]);
       setId(id + 1);
+    }
   }
 
   return (

@@ -8,12 +8,12 @@ const ListWrap = styled.div`
   justify-content: center;
 `
 
-function MemberList( { list }) {
+function MemberList( { list, editMember }) {
 
   return (
     <ListWrap>
       {list.map((member, index) => {
-        return <Member key={index} member={member}/>
+        return <Member key={index} member={member} editMember={editMember}/>
       })}
     </ListWrap>
   );

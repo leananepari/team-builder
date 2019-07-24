@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css';
 
-function Form( { member, setMember, memberList, setMemberList }) {
+function Form( { member, setMember, memberList, setMemberList, memberToEdit, id, setId }) {
+  const [memberPassed, setMemberPassed] = useState({name: undefined, email: undefined, role: undefined});
 
-  
+  useEffect(() => {
+    if (memberToEdit) {
+      setMemberPassed(memberToEdit);
+    }
+  }, [memberToEdit])
+
   function handleChange(event) {
-    setMember({ ...member, [event.target.name]: event.target.value });
-    // console.log('member', member)
+    if (memberToEdit) {
+      setMemberPassed({...memberPassed, [event.target.name]: event.target.value})
+    }
+
+    setMember({ ...member, [event.target.name]: event.target.value, 'id': id + 1 });
   }
   
   function handleSubmit(event) {
     event.preventDefault();
-    setMemberList([...memberList, member])
-    // console.log('submit LIST: ', memberList);
+    if (memberToEdit) {
+      memberList.forEach((member, index) => {
+        if (member.id === memberToEdit.id) {
+          setMemberList(memberList[index] = memberPassed);
+        }
+      })
+    } 
+      setMemberList([...memberList, member]);
+      setId(id + 1);
   }
 
   return (
@@ -26,6 +42,7 @@ function Form( { member, setMember, memberList, setMemberList }) {
               <input
                 type="text"
                 name="name"
+                value={memberPassed.name}
                 placeholder="Enter your name"
                 onChange={handleChange}
               />
@@ -37,6 +54,7 @@ function Form( { member, setMember, memberList, setMemberList }) {
           <input
             type="email"
             name="email"
+            value={memberPassed.email}
             aria-describedby="emailHelp"
             placeholder="Enter email"
             onChange={handleChange}
@@ -47,6 +65,7 @@ function Form( { member, setMember, memberList, setMemberList }) {
           <input
             type="role"
             name="role"
+            value={memberPassed.role}
             placeholder="Role"
             onChange={handleChange}
           />

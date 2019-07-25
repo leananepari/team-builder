@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function Form( {  memberList, setMemberList, memberToEdit, id, setId }) {
+function Form( {  memberList, setMemberList, memberToEdit, setMemberToEdit, id, setId }) {
   const [member, setMember] = useState({name: '', email: '', role: ''});
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function Form( {  memberList, setMemberList, memberToEdit, id, setId }) {
 
   function handleChange(event) {
     if (memberToEdit) {
-      setMember({...member, [event.target.name]: event.target.value})
+      setMember({...member, [event.target.name]: event.target.value, 'id': memberToEdit.id})
     } else {
       setMember({ ...member, [event.target.name]: event.target.value, 'id': id + 1 });
     }
@@ -26,6 +26,7 @@ function Form( {  memberList, setMemberList, memberToEdit, id, setId }) {
           setMemberList([...memberList]);
         }
       })
+      setMemberToEdit(undefined);
     } else {
       setMemberList([...memberList, member]);
       setId(id + 1);

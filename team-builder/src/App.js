@@ -24,6 +24,7 @@ function App() {
             memberList={memberList} 
             setMemberList={setMemberList}
             memberToEdit={memberToEdit}
+            setMemberToEdit={setMemberToEdit}
             id = {id}
             setId={setId}
       />

@@ -21,7 +21,7 @@ function Member( { member, editMember }) {
       <h2>Name: {member.name}</h2>
       <h2>Email: {member.email}</h2>
       <h2>Role: {member.role}</h2>
-      <NavHashLink smooth to="/#form"><button onClick={() => editMember(member.id)}>Edit</button></NavHashLink>
+      <NavHashLink smooth to="/#form"><div style={{border: '1px solid gray', width: '40px', textAlign: 'center'}} onClick={() => editMember(member.id)}>Edit</div></NavHashLink>
     </Card>
   );
 }

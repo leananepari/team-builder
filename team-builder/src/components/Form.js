@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../App.css';
 
 function Form( {  memberList, setMemberList, memberToEdit, id, setId }) {
   const [member, setMember] = useState({name: '', email: '', role: ''});
@@ -31,10 +30,11 @@ function Form( {  memberList, setMemberList, memberToEdit, id, setId }) {
       setMemberList([...memberList, member]);
       setId(id + 1);
     }
+    setMember({name: '', email: '', role: ''})
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{width: '500px', margin: '0 auto', marginTop: '40px'}}>
+    <form id="form" onSubmit={handleSubmit} style={{width: '500px', margin: '0 auto', marginTop: '40px'}}>
       <fieldset>
         <legend>Add a Member</legend>
         <div >

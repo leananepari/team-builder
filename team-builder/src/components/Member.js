@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavHashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -20,7 +21,7 @@ function Member( { member, editMember }) {
       <h2>Name: {member.name}</h2>
       <h2>Email: {member.email}</h2>
       <h2>Role: {member.role}</h2>
-      <button onClick={() => editMember(member.id)}>Edit</button>
+      <NavHashLink smooth to="/#form"><button onClick={() => editMember(member.id)}>Edit</button></NavHashLink>
     </Card>
   );
 }
